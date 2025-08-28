@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SimpleUI - Components Library</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            dark: {
+              100: '#1a1a1a',
+              200: '#1f1f1f',
+              300: '#2d2d2d',
+              400: '#3d3d3d',
+              500: '#4d4d4d',
+            },
+            border: {
+              dark: '#404040'
+            }
+          },
+          animation: {
+            'gradient': 'gradient 8s linear infinite',
+          },
+          keyframes: {
+            gradient: {
+              '0%, 100%': {
+                'background-size': '200% 200%',
+                'background-position': 'left center'
+              },
+              '50%': {
+                'background-size': '200% 200%',
+                'background-position': 'right center'
+              },
+            },
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0a0a0a;
+      color: #ededed;
+      scroll-behavior: smooth;
+    }
+
+    .gradient-border {
+      position: relative;
+      border-radius: 0.75rem;
+      background: linear-gradient(0deg, #0a0a0a, #0a0a0a),
+        linear-gradient(90deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+      background-clip: padding-box, border-box;
+      background-origin: padding-box, border-box;
+      border: 1px solid transparent;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .component-card {
+      transition: all 0.3s ease;
+    }
+
+    .component-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    .code-block {
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #1a1a1a;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #404040;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #4d4d4d;
+    }
+  </style>
+</head>
+
+<body class="bg-dark-100">
+  <!-- Navigation -->
+  <nav class="fixed w-full bg-dark-100/90 backdrop-blur-md z-50 border-b border-border-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <div class="flex-shrink-0 flex items-center">
+            <div class="h-8 w-8 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-md"></div>
+            <span class="ml-2 text-xl font-bold">SimpleUI</span>
+          </div>
+          <div class="hidden md:ml-6 md:flex md:space-x-8">
+            <a href="#features"
+              class="text-gray-300 hover:text-white inline-flex items-center px-1 pt-1 text-sm font-medium">Features</a>
+            <a href="#components"
+              class="text-gray-300 hover:text-white inline-flex items-center px-1 pt-1 text-sm font-medium">Components</a>
+            <a href="#installation"
+              class="text-gray-300 hover:text-white inline-flex items-center px-1 pt-1 text-sm font-medium">Installation</a>
+            <a href="#usage"
+              class="text-gray-300 hover:text-white inline-flex items-center px-1 pt-1 text-sm font-medium">Usage</a>
+          </div>
+        </div>
+        <div class="flex items-center">
+          <a href="#installation"
+            class="ml-4 px-4 py-2 rounded-md text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500">Get
+            Started</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
+        Build Beautiful UIs <span class="gradient-text">Faster</span>
+      </h1>
+      <p class="mt-4 max-w-3xl mx-auto text-xl text-gray-400">
+        A comprehensive collection of reusable React components designed to accelerate your development process.
+      </p>
+      <div class="mt-10">
+        <a href="#installation"
+          class="inline-flex items-center px-6 py-4 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500">
+          Get Started
+          <svg class="ml-2 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+              clip-rule="evenodd" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <div id="features" class="py-12 bg-dark-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h2 class="text-base font-semibold text-purple-400 tracking-wide uppercase">Features</h2>
+        <p class="mt-2 text-3xl font-extrabold text-white sm:text-4xl">
+          Why choose our component library?
+        </p>
+      </div>
+
+      <div class="mt-12">
+        <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Feature 1 -->
+          <div class="gradient-border p-6 rounded-xl">
+            <div
+              class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+              <i class="fas fa-bolt text-xl"></i>
+            </div>
+            <h3 class="mt-6 text-lg font-medium text-white">Fully Customizable</h3>
+            <p class="mt-2 text-gray-400">
+              Every component can be easily customized to match your design system with simple props.
+            </p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="gradient-border p-6 rounded-xl">
+            <div
+              class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+              <i class="fas fa-universal-access text-xl"></i>
+            </div>
+            <h3 class="mt-6 text-lg font-medium text-white">Accessible</h3>
+            <p class="mt-2 text-gray-400">
+              All components follow WAI-ARIA standards for accessibility right out of the box.
+            </p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="gradient-border p-6 rounded-xl">
+            <div
+              class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+              <i class="fas fa-feather text-xl"></i>
+            </div>
+            <h3 class="mt-6 text-lg font-medium text-white">Lightweight</h3>
+            <p class="mt-2 text-gray-400">
+              Optimized for performance with minimal bundle size impact and tree-shaking support.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Components Section -->
+  <div id="components" class="py-12 bg-dark-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h2 class="text-base font-semibold text-purple-400 tracking-wide uppercase">Components</h2>
+        <p class="mt-2 text-3xl font-extrabold text-white sm:text-4xl">
+          Comprehensive collection of UI elements
+        </p>
+        <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-400 sm:mt-4">
+          Everything you need to build modern web applications
+        </p>
+      </div>
+
+      <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Component 1 -->
+        <div class="gradient-border component-card p-6 rounded-xl">
+          <div
+            class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-indigo-600 to-purple-600 text-white mb-4">
+            <i class="fas fa-square text-xl"></i>
+          </div>
+          <h3 class="text-lg font-medium text-white">Button</h3>
+          <p class="mt-2 text-gray-400">
+            Fully customizable button components with multiple variants.
+          </p>
+        </div>
+
+        <!-- Component 2 -->
+        <div class="gradient-border component-card p-6 rounded-xl">
+          <div
+            class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-indigo-600 to-purple-600 text-white mb-4">
+            <i class="fas fa-keyboard text-xl"></i>
+          </div>
+          <h3 class="text-lg font-medium text-white">Input</h3>
+          <p class="mt-2 text-gray-400">
+            Beautiful input fields with validation and error states.
+          </p>
+        </div>
+
+        <!-- Component 3 -->
+        <div class="gradient-border component-card p-6 rounded-xl">
+          <div
+            class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-indigo-600 to-purple-600 text-white mb-4">
+            <i class="fas fa-table text-xl"></i>
+          </div>
+          <h3 class="text-lg font-medium text-white">Data Table</h3>
+          <p class="mt-2 text-gray-400">
+            Advanced tables with sorting, filtering and pagination.
+          </p>
+        </div>
+
+        <!-- Component 4 -->
+        <div class="gradient-border component-card p-6 rounded-xl">
+          <div
+            class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-indigo-600 to-purple-600 text-white mb-4">
+            <i class="fas fa-bell text-xl"></i>
+          </div>
+          <h3 class="text-lg font-medium text-white">Alert</h3>
+          <p class="mt-2 text-gray-400">
+            Notification components for success, warning, and error messages.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Installation Section -->
+  <div id="installation" class="py-12 bg-dark-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h2 class="text-base font-semibold text-purple-400 tracking-wide uppercase">Installation</h2>
+        <p class="mt-2 text-3xl font-extrabold text-white sm:text-4xl">
+          Get started in seconds
+        </p>
+        <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-400 sm:mt-4">
+          Install via npm and start using components immediately
+        </p>
+      </div>
+
+      <div class="mt-12 max-w-3xl mx-auto">
+        <div class="bg-dark-300 rounded-xl shadow-xl overflow-hidden">
+          <div class="px-6 py-4 border-b border-border-dark flex">
+            <div class="rounded-full w-3 h-3 bg-red-500 mr-2"></div>
+            <div class="rounded-full w-3 h-3 bg-yellow-500 mr-2"></div>
+            <div class="rounded-full w-3 h-3 bg-green-500"></div>
+          </div>
+          <div class="p-6">
+            <p class="text-gray-300 mb-4"># Install using npm</p>
+            <div class="flex items-center bg-dark-400 p-4 rounded-lg mb-6">
+              <div class="text-purple-400 mr-2">$</div>
+              <div class="text-gray-300 code-block">npm install simple_ui_elements</div>
+              <button class="ml-auto text-gray-400 hover:text-white">
+                <i class="far fa-copy"></i>
+              </button>
+            </div>
+
+            <p class="text-gray-300 mt-8 mb-4"># Or using yarn</p>
+            <div class="flex items-center bg-dark-400 p-4 rounded-lg mb-6">
+              <div class="text-purple-400 mr-2">$</div>
+              <div class="text-gray-300 code-block">yarn add simple_ui_elements</div>
+              <button class="ml-auto text-gray-400 hover:text-white">
+                <i class="far fa-copy"></i>
+              </button>
+            </div>
+
+            <p class="text-gray-300 mt-8 mb-4"># Or using pnpm</p>
+            <div class="flex items-center bg-dark-400 p-4 rounded-lg mb-6">
+              <div class="text-purple-400 mr-2">$</div>
+              <div class="text-gray-300 code-block">pnpm add simple_ui_elements</div>
+              <button class="ml-auto text-gray-400 hover:text-white">
+                <i class="far fa-copy"></i>
+              </button>
+            </div>
+
+            <p class="text-gray-300 mt-8 mb-4"># Run with NPX</p>
+            <div class="flex items-center bg-dark-400 p-4 rounded-lg mb-2">
+              <div class="text-purple-400 mr-2">$</div>
+              <div class="text-gray-300 code-block">npx simple_ui_elements@latest setup
+              </div>
+              <button class="ml-auto text-gray-400 hover:text-white">
+                <i class="far fa-copy"></i>
+              </button>
+            </div>
+            <p class="text-gray-300 mb-4"># This will import all the components and setup in your project</p>
+            <!-- <div class="flex items-center bg-dark-400 p-4 rounded-lg mb-2">
+              <div class="text-purple-400 mr-2">$</div>
+              <div class="text-gray-300 code-block">cd my-app</div>
+              <button class="ml-auto text-gray-400 hover:text-white">
+                <i class="far fa-copy"></i>
+              </button>
+            </div> -->
+            <div class="flex items-center bg-dark-400 p-4 rounded-lg">
+              <div class="text-purple-400 mr-2">$</div>
+              <div class="text-gray-300 code-block">npm start</div>
+              <button class="ml-auto text-gray-400 hover:text-white">
+                <i class="far fa-copy"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Usage Section -->
+  <div id="usage" class="py-12 bg-dark-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h2 class="text-base font-semibold text-purple-400 tracking-wide uppercase">Usage</h2>
+        <p class="mt-2 text-3xl font-extrabold text-white sm:text-4xl">
+          Simple and intuitive API
+        </p>
+      </div>
+
+      <div class="mt-12 max-w-3xl mx-auto bg-dark-300 rounded-xl shadow-xl overflow-hidden">
+        <div class="px-6 py-4 border-b border-border-dark flex">
+          <div class="rounded-full w-3 h-3 bg-red-500 mr-2"></div>
+          <div class="rounded-full w-3 h-3 bg-yellow-500 mr-2"></div>
+          <div class="rounded-full w-3 h-3 bg-green-500"></div>
+        </div>
+        <div class="p-6">
+          <p class="text-gray-300 mb-4">// Import components</p>
+          <div class="flex items-center bg-dark-400 p-4 rounded-lg mb-6">
+            <div class="text-blue-400 code-block">import</div>
+            <div class="text-gray-300 code-block ml-1">{ Button }</div>
+            <div class="text-blue-400 code-block ml-1">from</div>
+            <div class="text-green-400 code-block ml-1">'@/components/common/button'</div>
+            <button class="ml-auto text-gray-400 hover:text-white">
+              <i class="far fa-copy"></i>
+            </button>
+          </div>
+
+
+          <p class="text-gray-300 mb-4">// Use in your app</p>
+          <div class="bg-dark-400 p-4 rounded-lg">
+            <div class="text-blue-400 code-block">function</div>
+            <div class="text-yellow-300 code-block ml-1">App</div>
+            <div class="text-gray-300 code-block">() {</div>
+            <div class="text-blue-400 code-block ml-4">return</div>
+            <div class="text-gray-300 code-block">(</div>
+            <div class="text-gray-300 code-block ml-8">&lt;div&gt;</div>
+            <div class="text-gray-300 code-block ml-12">&lt;Button <span class="text-purple-400">variant</span>="<span
+                class="text-green-400">primary</span>"&gt;</div>
+            <div class="text-gray-300 code-block ml-16">Click Me</div>
+            <div class="text-gray-300 code-block ml-12">&lt;/Button&gt;</div>
+            <div class="text-gray-300 code-block ml-8">&lt;/div&gt;</div>
+            <div class="text-gray-300 code-block">)</div>
+            <div class="text-gray-300 code-block">}</div>
+            <button class="ml-auto text-gray-400 hover:text-white block mt-4">
+              <i class="far fa-copy"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Section -->
+  <div class="py-12 bg-gradient-to-r from-indigo-600 to-purple-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+      <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+        <span class="block">Ready to dive in?</span>
+        <span class="block">Start using Simple UI today.</span>
+      </h2>
+      <div class="mt-8 flex justify-center">
+        <a href="#installation"
+          class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50">
+          Get started
+        </a>
+        <a target="_blank" href="https://github.com/basant-rai/ui_library"
+          class="ml-4 inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-200 bg-indigo-700 hover:bg-indigo-800">
+          View documentation
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-dark-200 border-t border-border-dark">
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center">
+          <div class="h-8 w-8 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-md"></div>
+          <span class="ml-2 text-xl font-bold">SimpleUI</span>
+        </div>
+        <div class="flex space-x-6">
+          <a target="_blank" href="https://github.com/basant-rai/ui_library" class="text-gray-400 hover:text-white">
+            <i class="fab fa-github text-xl"></i>
+          </a>
+          <a target="_blank" href="https://www.npmjs.com/package/simple_ui_elements"
+            class="text-gray-400 hover:text-white">
+            <i class="fab fa-npm text-xl"></i>
+          </a>
+        </div>
+      </div>
+      <div class="mt-8 border-t border-border-dark pt-8 md:flex md:items-center md:justify-between">
+        <p class="text-base text-gray-400 text-center md:text-left">
+          &copy; 2025 SimpleUI. All rights reserved.
+        </p>
+        <div class="flex justify-center space-x-6 md:order-2 mt-8 md:mt-0">
+          <a target="_blank" href="https://github.com/basant-rai/ui_library"
+            class="text-gray-400 hover:text-white">Documentation</a>
+          <a href="#usage" class="text-gray-400 hover:text-white">Examples</a>
+          <a target="_blank" href="https://github.com/basant-rai/ui_library"
+            class="text-gray-400 hover:text-white">Support</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple copy to clipboard functionality
+    document.querySelectorAll('.fa-copy').forEach(icon => {
+      icon.addEventListener('click', function () {
+        const codeBlock = this.closest('.flex, .block').querySelector('.code-block');
+        const textToCopy = codeBlock.textContent;
+
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          const originalClass = this.className;
+          this.className = 'fas fa-check text-green-400';
+
+          setTimeout(() => {
+            this.className = originalClass;
+          }, 2000);
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
